@@ -8,6 +8,9 @@ For the sake of being concise, I have made a few acronyms:
 - GS: Game Sync
 - DW: Dream World
 
+## Why is this project called Dream Land?
+It's named Dream Land after Mr. Sandman's Taunt (Saying "Dreeam Laand, Boo!"), and his signature move ("Dreamland Express"). I chose this name because of it's similarity to the real game's name; Dream World.
+
 ## Research History
 ### 2021
 #### September

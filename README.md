@@ -17,3 +17,11 @@ It's named Dream Land after Mr. Sandman's Taunt (Saying "Dreeam Laand, Boo!"), a
 9/8/2021: Research begins on Dream World Game Sync, in hopes of being able to back up the save file to the cloud
 
 9/9/2021: I (zurgeg, the author of this repo) located an [archive on Archive.org](https://archive.org/download/pdw_20191128/pdw-snapshot-2014.7z) containing a snapshot of PDW
+
+## Credits
+zurgeg: Did some research, found the Internet Archive link
+forevertoocat: Took interest in the project and joined the team.
+
+## Files
+`main.swf`: Obviously the main thing
+`pdw.swf`: Likely assets?

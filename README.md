@@ -20,8 +20,10 @@ It's named Dream Land after Mr. Sandman's Taunt (Saying "Dreeam Laand, Boo!"), a
 
 ## Credits
 zurgeg: Did some research, found the Internet Archive link
+
 forevertoocat: Took interest in the project and joined the team.
 
 ## Files
 `main.swf`: Obviously the main thing
+
 `pdw.swf`: Likely assets?

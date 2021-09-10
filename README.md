@@ -18,6 +18,8 @@ It's named Dream Land after Mr. Sandman's Taunt (Saying "Dreeam Laand, Boo!"), a
 
 9/9/2021: I (zurgeg, the author of this repo) located an [archive on Archive.org](https://archive.org/download/pdw_20191128/pdw-snapshot-2014.7z) containing a snapshot of PDW
 
+9/10/2021: Looks like it's using the URL `en-ds.pokemon-gl.com` for sync communications, this is a huge breakthrough
+
 ## Credits
 zurgeg: Did some research, found the Internet Archive link
 

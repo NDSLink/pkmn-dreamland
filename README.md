@@ -20,6 +20,30 @@ It's named Dream Land after Mr. Sandman's Taunt (Saying "Dreeam Laand, Boo!"), a
 
 9/10/2021: Looks like it's using the URL `en-ds.pokemon-gl.com` for sync communications, this is a huge breakthrough
 
+10/2/2021: The following URLs were located in Pokemon White's executable:
+```
+en-ds.pokemon-gl.com/dsio/gw?p=account.createdata&tok=%s
+en-ds.pokemon-gl.com/dsio/gw?p=savedata.upload&gsid=%u&rom=%u&langcode=%u&dreamw=%u&tok=%s
+en-ds.pokemon-gl.com/dsio/gw?p=sleepily.bitlist&gsid=%u&rom=%u&langcode=%u&dreamw=%u&tok=%s
+en-ds.pokemon-gl.com/dsio/gw?p=savedata.download&gsid=%u&rom=%u&langcode=%u&dreamw=%u&tok=%s
+en-ds.pokemon-gl.com/dsio/gw?p=account.playstatus&gsid=%u&rom=%u&langcode=%u&dreamw=%u&tok=%s
+en-ds.pokemon-gl.com/dsio/gw?p=worldbattle.upload&gsid=%u&rom=%u&langcode=%u&dreamw=%u&tok=%s
+en-ds.pokemon-gl.com/dsio/gw?p=worldbattle.download&gsid=%u&rom=%u&langcode=%u&dreamw=%u&tok=%s
+en-ds.pokemon-gl.com/dsio/gw?p=account.create.upload&gsid=%u&rom=%u&langcode=%u&dreamw=%u&tok=%s
+en-ds.pokemon-gl.com/dsio/gw?p=savedata.download.finish&gsid=%u&rom=%u&langcode=%u&dreamw=%u&tok=%s
+https://en-ds.pokemon-gl.com/dsio/gw?p=account.createdata&tok=%s
+https://en-ds.pokemon-gl.com/dsio/gw?p=savedata.upload&gsid=%u&rom=%u&langcode=%u&dreamw=%u&tok=%s
+https://en-ds.pokemon-gl.com/dsio/gw?p=sleepily.bitlist&gsid=%u&rom=%u&langcode=%u&dreamw=%u&tok=%s
+https://en-ds.pokemon-gl.com/dsio/gw?p=savedata.download&gsid=%u&rom=%u&langcode=%u&dreamw=%u&tok=%s
+https://en-ds.pokemon-gl.com/dsio/gw?p=account.playstatus&gsid=%u&rom=%u&langcode=%u&dreamw=%u&tok=%s
+https://en-ds.pokemon-gl.com/dsio/gw?p=worldbattle.upload&gsid=%u&rom=%u&langcode=%u&dreamw=%u&tok=%s
+https://en-ds.pokemon-gl.com/dsio/gw?p=worldbattle.download&gsid=%u&rom=%u&langcode=%u&dreamw=%u&tok=%s
+https://en-ds.pokemon-gl.com/dsio/gw?p=account.create.upload&gsid=%u&rom=%u&langcode=%u&dreamw=%u&tok=%s
+https://en-ds.pokemon-gl.com/dsio/gw?p=savedata.download.finish&gsid=%u&rom=%u&langcode=%u&dreamw=%u&tok=%s
+```
+TODO: Figure out what these are
+
+
 ## Credits
 zurgeg: Did some research, found the Internet Archive link
 

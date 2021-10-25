@@ -20,6 +20,7 @@ It's named Dream Land after Mr. Sandman's Taunt (Saying "Dreeam Laand, Boo!"), a
 
 9/10/2021: Looks like it's using the URL `en-ds.pokemon-gl.com` for sync communications, this is a huge breakthrough
 
+#### October
 10/2/2021: The following URLs were located in Pokemon White's executable:
 ```
 en-ds.pokemon-gl.com/dsio/gw?p=account.createdata&tok=%s
@@ -42,6 +43,13 @@ https://en-ds.pokemon-gl.com/dsio/gw?p=account.create.upload&gsid=%u&rom=%u&lang
 https://en-ds.pokemon-gl.com/dsio/gw?p=savedata.download.finish&gsid=%u&rom=%u&langcode=%u&dreamw=%u&tok=%s
 ```
 TODO: Figure out what these are
+10/25/2021: I (zurgeg) haven't been posting much, but:
+
+##### `savedata.download`:
+- Response starts with a bunch of padding.
+- Then the item ID in hex, and likely the number of that item
+- Pokemon are likely stored after the 80 byte (this means that each item must be `0x4` bytes long, because you get 20 items, 80/4 = 20) item response
+- You can have up to 10 Pokemon in the response. I'll need to do a bit of research later.
 
 
 ## Credits

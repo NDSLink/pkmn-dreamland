@@ -51,6 +51,26 @@ TODO: Figure out what these are
 - Pokemon are likely stored after the 80 byte (this means that each item must be `0x4` bytes long, because you get 20 items, 80/4 = 20) item response
 - You can have up to 10 Pokemon in the response. I'll need to do a bit of research later.
 
+4/8/2022: pog
+##### `savedata.download`:
+- Byte 0x01 = If not zero, triggers 1320x, where x is the number
+- Byte 0x02 = Triggers comm error if not zero
+- Byte 0x03 = Triggers comm error if not zero
+- Byte 0x04 = Triggers comm error if not zero
+- Byte 0x05-0x80 onward = padding
+- Byte 0x81-0xD1(?) = Pokemon
+  Pokemon Structure:
+  Byte 0x00-0x01 = Species
+  Byte 0x02-0x03 = ???
+  Byte 0x04-0x05 = ???
+  Byte 0x06-0x07 = ???
+  Byte 0x08 = ???
+- Byte 0xD2-0xD5 = padding?
+- Byte 0xD6 = Padding?
+- Byte 0xD7 = Padding?
+- Byte 0xD8 = Padding?
+- Byte 0xD9 = Download musicals?
+Note: when 0xD6-D8 are set to 0x01, the pokemon will level up by 50?
 
 ## Credits
 zurgeg: Did some research, found the Internet Archive link

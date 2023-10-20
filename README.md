@@ -11,73 +11,42 @@ For the sake of being concise, I have made a few acronyms:
 ## Why is this project called Dream Land?
 It's named Dream Land after Mr. Sandman's Taunt (Saying "Dreeam Laand, Boo!"), and his signature move ("Dreamland Express"). I chose this name because of it's similarity to the real game's name; Dream World.
 
-## Research History
-### 2021
-#### September
-9/8/2021: Research begins on Dream World Game Sync, in hopes of being able to back up the save file to the cloud
-
-9/9/2021: I (zurgeg, the author of this repo) located an [archive on Archive.org](https://archive.org/download/pdw_20191128/pdw-snapshot-2014.7z) containing a snapshot of PDW
-
-9/10/2021: Looks like it's using the URL `en-ds.pokemon-gl.com` for sync communications, this is a huge breakthrough
-
-#### October
-10/2/2021: The following URLs were located in Pokemon White's executable:
-```
-en-ds.pokemon-gl.com/dsio/gw?p=account.createdata&tok=%s
-en-ds.pokemon-gl.com/dsio/gw?p=savedata.upload&gsid=%u&rom=%u&langcode=%u&dreamw=%u&tok=%s
-en-ds.pokemon-gl.com/dsio/gw?p=sleepily.bitlist&gsid=%u&rom=%u&langcode=%u&dreamw=%u&tok=%s
-en-ds.pokemon-gl.com/dsio/gw?p=savedata.download&gsid=%u&rom=%u&langcode=%u&dreamw=%u&tok=%s
-en-ds.pokemon-gl.com/dsio/gw?p=account.playstatus&gsid=%u&rom=%u&langcode=%u&dreamw=%u&tok=%s
-en-ds.pokemon-gl.com/dsio/gw?p=worldbattle.upload&gsid=%u&rom=%u&langcode=%u&dreamw=%u&tok=%s
-en-ds.pokemon-gl.com/dsio/gw?p=worldbattle.download&gsid=%u&rom=%u&langcode=%u&dreamw=%u&tok=%s
-en-ds.pokemon-gl.com/dsio/gw?p=account.create.upload&gsid=%u&rom=%u&langcode=%u&dreamw=%u&tok=%s
-en-ds.pokemon-gl.com/dsio/gw?p=savedata.download.finish&gsid=%u&rom=%u&langcode=%u&dreamw=%u&tok=%s
-https://en-ds.pokemon-gl.com/dsio/gw?p=account.createdata&tok=%s
-https://en-ds.pokemon-gl.com/dsio/gw?p=savedata.upload&gsid=%u&rom=%u&langcode=%u&dreamw=%u&tok=%s
-https://en-ds.pokemon-gl.com/dsio/gw?p=sleepily.bitlist&gsid=%u&rom=%u&langcode=%u&dreamw=%u&tok=%s
-https://en-ds.pokemon-gl.com/dsio/gw?p=savedata.download&gsid=%u&rom=%u&langcode=%u&dreamw=%u&tok=%s
-https://en-ds.pokemon-gl.com/dsio/gw?p=account.playstatus&gsid=%u&rom=%u&langcode=%u&dreamw=%u&tok=%s
-https://en-ds.pokemon-gl.com/dsio/gw?p=worldbattle.upload&gsid=%u&rom=%u&langcode=%u&dreamw=%u&tok=%s
-https://en-ds.pokemon-gl.com/dsio/gw?p=worldbattle.download&gsid=%u&rom=%u&langcode=%u&dreamw=%u&tok=%s
-https://en-ds.pokemon-gl.com/dsio/gw?p=account.create.upload&gsid=%u&rom=%u&langcode=%u&dreamw=%u&tok=%s
-https://en-ds.pokemon-gl.com/dsio/gw?p=savedata.download.finish&gsid=%u&rom=%u&langcode=%u&dreamw=%u&tok=%s
-```
-TODO: Figure out what these are
-10/25/2021: I (zurgeg) haven't been posting much, but:
-
-##### `savedata.download`:
-- Response starts with a bunch of padding.
-- Then the item ID in hex, and likely the number of that item
-- Pokemon are likely stored after the 80 byte (this means that each item must be `0x4` bytes long, because you get 20 items, 80/4 = 20) item response
-- You can have up to 10 Pokemon in the response. I'll need to do a bit of research later.
-
-4/8/2022: pog
-##### `savedata.download`:
-- Byte 0x01 = If not zero, triggers 1320x, where x is the number
-- Byte 0x02 = Triggers comm error if not zero
-- Byte 0x03 = Triggers comm error if not zero
-- Byte 0x04 = Triggers comm error if not zero
-- Byte 0x05-0x80 onward = padding
-- Byte 0x81-0xD1(?) = Pokemon
-  Pokemon Structure:
-  Byte 0x00-0x01 = Species
-  Byte 0x02-0x03 = ???
-  Byte 0x04-0x05 = ???
-  Byte 0x06-0x07 = ???
-  Byte 0x08 = ???
-- Byte 0xD2-0xD5 = padding?
-- Byte 0xD6 = Padding?
-- Byte 0xD7 = Padding?
-- Byte 0xD8 = Padding?
-- Byte 0xD9 = Download musicals?
-Note: when 0xD6-D8 are set to 0x01, the pokemon will level up by 50?
-
 ## Credits
-zurgeg: Did some research, found the Internet Archive link
+- @zurgeg: Research and code (Python)
+- @kuroppoi: Research and code (Java)
 
-forevertoocat: Took interest in the project and joined the team.
+## Styling
+1. Refer to yourself in the third person. Using "I" gets confusing in a repo that's supposed to be maintained by multiple people
+2. When making comments, make sure they are marked with "Note: (your username)". I.e., Note (@zurgeg).
+3. When referring to implemenentations (see the mention of `0x7D` below), find the implementation in both `dream-server` and Entralinked if you can
+4. Lastly, when referring to internal documentation within code (i.e., comments), feel free to use either repo, since both **should** have the same documentation
 
-## Files
-`main.swf`: Obviously the main thing
+## Structures
+### `savedata.download`
+The meat and potatoes of the DS side. It kicks off with an error code (4 bytes). If 0x01 is not zero, then it triggers `1320x`, where X is 0x01.
 
-`pdw.swf`: Likely assets?
+After this is `0x7c` bytes of padding. Then, there's a 4-byte value. This is written to the save. If this value is the same as the one in the save, then no data is downloaded.
+
+In `dream-server`, this is treated as a CRC32 (see [Line 222 of `dsio.py`](https://github.com/NDSLink/dream-server/blob/master/dsio.py#L222)).
+
+In Entralinked, 4 random bytes are used (see [Line 244 of `src/main/java/entralinked/network/http/pgl/PglHandler.java`](https://github.com/kuroppoi/entralinked/blob/master/src/main/java/entralinked/network/http/pgl/PglHandler.java#L244))
+
+After that, there are 10 8-byte Pokemon (see [Line 165 of `dsio.py`](https://github.com/NDSLink/dream-server/blob/master/dsio.py#L165)).
+
+Finally, there is the worst idea ever created by Nintendo. First, we have 20 (2 byte) item IDs, followed by (seperately!) 20 (1 byte) item quantities, so the response would be like this:
+```
+\x10\x10 # metal powder
+\x00\x00 # ...18 more times (padding)
+\x00\x01 # 1 of [downloaded item 1]
+\x00\x00 # ...18 more times (padding)
+```
+Note (@zurgeg): what were these developers on??
+
+Then, there's the Dream Decor catalouge.
+
+Note (@zurgeg): Why did they offload this to the DS?
+
+Basically, this data is a name (12 chars max, utf16-le) followed by a 1 byte index (which will be stored in the save).
+
+Finally, there's some more data which I think kuroppoi RE'd but @zurgeg never wrote in his code. TODO: document this
+

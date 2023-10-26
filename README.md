@@ -48,5 +48,22 @@ Note (@zurgeg): Why did they offload this to the DS?
 
 Basically, this data is a name (12 chars max, utf16-le) followed by a 1 byte index (which will be stored in the save).
 
-Finally, there's some more data which I think kuroppoi RE'd but @zurgeg never wrote in his code. TODO: document this
+#### Join Avenue Visitor Data
 
+In Black Version 2 and White Version 2 only, there are twelve (12) entries of `0x20` bytes each starting at offset `0x11C` representing Join Avenue visitor data.\
+Each block of visitor data is structured as follows:
+| Offset | Data type | Description |
+| --- | --- | --- |
+0x00 | string | Visitor name (7 characters) in UTF-16 Little Endian
+0x0E | int16 | Visitor name terminator (0xFF)
+0x10 | int8 | Visitor type (Trainer class & greeting phrase)
+0x11 | int8 | Shop type
+0x12 | int16 | Unknown, appears to do nothing (research needed!)
+0x14 | int32 | Unknown, entry is ignored if value is zero (research needed!)
+0x18 | int8 | Region (country) code
+0x19 | int8 | Subregion (state/province) code
+0x1A | int8 | Unknown, entry is ignored if value is 1 (research needed!)
+0x1B | int8 | Game version (ROM code), affects which goods or services are for sale
+0x1C | int8 | Gender (0 = male, 1 = female)
+0x1D | int8 | Unknown (research needed!)
+0x1E | int16 | Tucked in Pokémon species ID

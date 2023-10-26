@@ -52,18 +52,18 @@ Basically, this data is a name (12 chars max, utf16-le) followed by a 1 byte ind
 
 In Black Version 2 and White Version 2 only, there are twelve (12) entries of `0x20` bytes each starting at offset `0x11C` representing Join Avenue visitor data.\
 Each block of visitor data is structured as follows:
-| Start offset | End offset | Description |
+| Offset | Data type | Description |
 | --- | --- | --- |
-0x00 | 0x0D | Visitor name (7 characters) in UTF-16 Little Endian
-0x0E | 0X0F | Visitor name terminator (0xFF)
-0x10 | 0x10 | Visitor type (Trainer class & greeting phrase)
-0x11 | 0x11 | Shop type
-0x12 | 0x13 | Unknown, appears to do nothing (research needed!)
-0x14 | 0x17 | Unknown, entry is ignored if value is zero (research needed!)
-0x18 | 0x18 | Region (country) code
-0x19 | 0x19 | Subregion (state/province) code
-0x1A | 0x1A | Unknown, entry is ignored if value is 1 (research needed!)
-0x1B | 0x1B | Game version (ROM code), affects which goods or services are for sale
-0x1C | 0x1C | Gender (0 = male, 1 = female)
-0x1D | 0x1D | Unknown (research needed!)
-0x1E | 0x1F | Tucked in Pokémon species ID
+0x00 | string | Visitor name (7 characters) in UTF-16 Little Endian
+0x0E | int16 | Visitor name terminator (0xFF)
+0x10 | int8 | Visitor type (Trainer class & greeting phrase)
+0x11 | int8 | Shop type
+0x12 | int16 | Unknown, appears to do nothing (research needed!)
+0x14 | int32 | Unknown, entry is ignored if value is zero (research needed!)
+0x18 | int8 | Region (country) code
+0x19 | int8 | Subregion (state/province) code
+0x1A | int8 | Unknown, entry is ignored if value is 1 (research needed!)
+0x1B | int8 | Game version (ROM code), affects which goods or services are for sale
+0x1C | int8 | Gender (0 = male, 1 = female)
+0x1D | int8 | Unknown (research needed!)
+0x1E | int16 | Tucked in Pokémon species ID
